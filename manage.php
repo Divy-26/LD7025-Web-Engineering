@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<title>Vehicle Park Management System</title>
+<title>Messages</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<?php
 			include('include/head.php');
@@ -15,11 +15,12 @@
 	?>
 	
 	<section id="content">
+	<img src="src/bg.png" style="position:absolute; z-index:-1; margin:0;"/>
 	<div>
-	<p class="phead">Users</p>
-	<div style="width:600px;background:white;padding:10px;margin:auto;">
+	<p class="phead">Manage Admin</p>
+	<div style="width:660px;background:white;padding:10px;margin:auto;">
 		
-						<form method="post" action="delete.php" >
+			<form method="post" action="deleteadmin.php" >
                         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
                            
                             <thead>
@@ -27,15 +28,15 @@
                                 <tr>
                                     <th>CHK</th>
                                     <th>Name</th>
-				    <th>Id No</th>
-                                    <th>Phone</th>
-                                    <th style="width:100px;">Plate No</th>
-                                                             
+				    <th>Phone</th>
+				    <th style="width:100px;">Password</th>
+                                    <th>Id No</th>
+                                                                                             
                                 </tr>
                             </thead>
                             <tbody>
 							<?php 
-							$query=mysqli_query($connect, "select * from users where access='2'")or die(mysqli_error());
+							$query=mysqli_query($connect,"select * from users where access=1")or die(mysqli_error());
 							while($row=mysqli_fetch_array($query)){
 							$id=$row['id'];
 							?>
@@ -45,9 +46,10 @@
 										<input name="selector[]" type="checkbox" value="<?php echo $id; ?>">
 										</td>
                                          <td><?php echo $row['name'] ?></td>
+										  <td><?php echo $row['phone'] ?></td>
+                                         <td><?php echo $row['password'] ?></td>
                                          <td><?php echo $row['id_no'] ?></td>
-                                         <td><?php echo $row['phone'] ?></td>
-                                         <td><?php echo $row['plate_no'] ?></td>
+                                        
                                        
                                 </tr>
                          

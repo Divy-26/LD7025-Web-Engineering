@@ -1,51 +1,52 @@
- <?php 
- 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-		
-}
-
-if (isset($_POST['submit'])) {
-	include('../include/connect.php');
-	include('../include/insert.php');
-	$phone=$_SESSION['phone'];
-	$street=$_POST['street'];
+<!DOCTYPE html>
+<head>
+<title>Booking Parking Lot</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<?php
+			include('include/head.php');
+	?>
+</head>
+<body>
+	<section id="container">
+	<?php
+			include('include/header.php');
+			include('include/connect.php');			
+	?>
 	
-							date_default_timezone_set('India/'Kolkata'); // CDT
-							$dt=date("m.d.y");
-							$format = "H:i";
-							$date = date($format, time());
-							$tt=$dt.' '.$date;
-	
-	mysql_connect("localhost", "root", "") or die(mysql_error());
-    mysql_select_db("vpms-sql") or die(mysql_error());
-	$sql = "UPDATE users SET pl_booked = 'YES' WHERE phone = '$phone'";
-	$table_name='bookings';
-	 if (mysql_query($sql))
-    {
-		$query = "select * from users where phone='$phone'";
+	<section id="content">
+	<p class="phead"> Booking Parking Lot</p>
+	<div id="book" class="p1">
+	<?php  
+			$query = "select * from streets where street='c'";
 			$result = $conn->query($query);
 			while($rows = $result->fetch_assoc()) {
-				$plate=$rows['plate_no'];
-				$status='BOOKED';
+			echo '<p>Adarsh Nagar : '.$rows['available'].' Parking Lot Available</p>';
 			}
-		$form_data = array(
-	    'phone' => $phone,
-		'plate_no'=> $plate,
-		'status' => $status,
-		'street'=> $street,
-		'book_time' => $tt
+			$query = "select * from streets where street='Prem Nagar'";
+			$result = $conn->query($query);
+			while($rows = $result->fetch_assoc()) {
+			echo '<p>Prem Nagar : '.$rows['available'].' Parking Lot Available</p>';
+			}
+	?>
 		
-	);
-	//echo dbRowInsert($table_name, $form_data);
-	$conn->multi_query( dbRowInsert($table_name, $form_data));
-	$conn->close();
-      header("Location: ../success.php");
-    }
-	}
-	
-	//
-
-
-//
-?>
+		
+	</div>
+	<form id="book" action="proc/book.php" method="POST">
+		<label>Select street:</label>
+		
+				<select name="street">
+					<option value="Adarsh Nagar>Adarsh Nagar</option>
+					<option value="Prem Nagar">Prem Nagar</option>
+				  
+				</select>
+		
+		<input type="submit" name="submit" value ="BOOK NOW" style="margin-left:50px; margin-top:5px; padding:3px;" />
+	</form>
+	<div id="book">
+		<p>Parking fees: Rs 60/- non-refundable.</p>
+		
+	</div>
+	</section>
+	</section>
+</body>
+</html>

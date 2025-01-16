@@ -15,12 +15,11 @@
 	?>
 	
 	<section id="content">
+	<div class="edit tooltip" title="Edit Your Profile"><img src="src/edit.png"/></div>
 	<div class="profile">
-		<div class="avator"><span>Change Profile pic</span></div>
-		<div class="edit tooltip" title="Edit Your Profile"><img src="src/edit.png" />
-
-
-		</div>
+	
+		<div class="avator"><span>Change Profile Pic</span></div>
+		
 		<?php
 			
 			$password=$_SESSION['password'];
@@ -33,7 +32,7 @@
 		<div class="dt name">NAME: <span><?php  echo $rows['name'];  ?></span></div>
 		<div class="dt phone">PHONE: <span><?php  echo $rows['phone'];  ?></span></div>
 		<div class="dt id">ID. NO: <span><?php  echo $rows['id_no'];  ?></span></div>
-		<div class="dt plate">VEHICLE PLATE NO: <span><?php  echo $rows['plate_no'];  ?></div>
+		<div class="dt plate">CAR PLATE NO: <span><?php  echo $rows['plate_no'];  ?></div>
 		<button style="display:none">Save Changes</button>
 		<div id="status"></div>
 		<?php  } ?>

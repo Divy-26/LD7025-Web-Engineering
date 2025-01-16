@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<title>Vehicle Park Management System</title>
+<title>Parking Lot Layout</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<?php
 			include('include/head.php');
@@ -14,10 +14,8 @@
 	?>
 	
 	<section id="content">
-	<img src="src/bg.png" style="position:absolute; z-index:-1; margin:0;"/>
-	<div>
-		<vhead>Transaction Successful</vhead>
-	</div>
+	<img src="src/city.jpg" style="width:480px; border:solid 2px gray; margin:10px;display:inline;"/>
+	<img src="src/pl.jpg" style="width:450px; border:solid 2px gray; margin:10px;display:inline;"/>
 	</section>
 	</section>
 </body>

@@ -15,46 +15,45 @@
 	?>
 	
 	<section id="content">
+	<img src="src/bg.png" style="position:absolute; z-index:-1; margin:0;"/>
 	<div>
-	<p class="phead">Users</p>
-	<div style="width:600px;background:white;padding:10px;margin:auto;">
+	<p class="phead">Transactions</p>
+	<div style="width:660px;background:white;padding:10px;margin:auto;">
 		
-						<form method="post" action="delete.php" >
+						<form method="post" action="" >
                         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
                            
                             <thead>
 						
                                 <tr>
-                                    <th>CHK</th>
-                                    <th>Name</th>
-				    <th>Id No</th>
-                                    <th>Phone</th>
-                                    <th style="width:100px;">Plate No</th>
+                                    <th>Date & Time</th>
+									<th>Confirmation Code</th>
+									<th>Amount</th>
+                                    <th>phone</th>
+                                   
                                                              
                                 </tr>
                             </thead>
                             <tbody>
 							<?php 
-							$query=mysqli_query($connect, "select * from users where access='2'")or die(mysqli_error());
+							$query=mysqli_query($connect, "select * from zones")or die(mysql_error());
 							while($row=mysqli_fetch_array($query)){
-							$id=$row['id'];
 							?>
                               
 										<tr>
-										<td>
-										<input name="selector[]" type="checkbox" value="<?php echo $id; ?>">
-										</td>
-                                         <td><?php echo $row['name'] ?></td>
-                                         <td><?php echo $row['id_no'] ?></td>
+									
+                                         <td><?php echo $row['d1'] ?></td>
+										  <td><?php echo $row['account'] ?></td>
+                                         <td><?php echo $row['charge'] ?></td>
                                          <td><?php echo $row['phone'] ?></td>
-                                         <td><?php echo $row['plate_no'] ?></td>
+                                        
                                        
                                 </tr>
                          
 						          <?php } ?>
                             </tbody>
                         </table>
-						<input type="submit" class="btn btn-danger" value="Delete" name="delete">
+					
           
 		</form>
 	</div></div>
