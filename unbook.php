@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<head>
-<title>Unbook</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<?php
-			include('include/head.php');
-	?>
-</head>
-<body>
-	<section id="container">
-	<?php
-			include('include/header.php');
-						
-	?>
+ <?php 
+ 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+	$connection = mysqli_connect("localhost", "root", "", "vpms-sql");
+	$phone=$_SESSION['phone'];
+	$query = mysqli_query($connection, "select * from users where pl_booked='YES' AND phone='$phone'", $connection);
+	$rows = mysqli_num_rows($query);
+	//echo $rows;
+	$row=mysqli_fetch_array($query);
+	//if ($rows == 1) {
 	
-	<section id="content">
-	<p class="phead">Unbook Parking Lot</p>
-	<a href="basic/unbook.php" class="unbook">Unbook Now</a>	
-	
-	</section>
-	</section>
-	
-</body>
-</html>
+	$sql = "UPDATE users SET pl_booked = 'NO' WHERE phone = '$phone'";
+	mysqli_query($connection, $sql);
+	$sql = "UPDATE zones SET status = 'UNBOOKED' WHERE phone = '$phone'";
+	mysqli_query($connection, $sql);
+	 header("Location: ../success_unbook.php");
+	//}
+		
+}
